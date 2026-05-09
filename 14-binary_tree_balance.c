@@ -1,31 +1,39 @@
 #include "binary_trees.h"
 
 /**
- * height_b - Helper to measure the height of a binary tree
- * @tree: Pointer to the root node
+ * binary_tree_height_bal - Measures the height of a binary tree
+ * @tree: Pointer to the root node of the tree to measure
  *
- * Return: Height of the tree
+ * Return: Height of the tree, 0 if tree is NULL
  */
-size_t height_b(const binary_tree_t *tree)
+size_t binary_tree_height_bal(const binary_tree_t *tree)
 {
-	size_t l, r;
+	size_t left_height, right_height;
 
 	if (tree == NULL)
 		return (0);
-	l = tree->left ? 1 + height_b(tree->left) : 0;
-	r = tree->right ? 1 + height_b(tree->right) : 0;
-	return (l >= r ? l : r);
+
+	left_height = tree->left ? 1 + binary_tree_height_bal(tree->left) : 0;
+	right_height = tree->right ? 1 + binary_tree_height_bal(tree->right) : 0;
+
+	return (left_height > right_height ? left_height : right_height);
 }
 
 /**
  * binary_tree_balance - Measures the balance factor of a binary tree
  * @tree: Pointer to the root node of the tree to measure the balance factor
  *
- * Return: Balance factor. If tree is NULL, return 0
+ * Return: Balance factor of the tree, 0 if tree is NULL
  */
 int binary_tree_balance(const binary_tree_t *tree)
 {
+	int left_height, right_height;
+
 	if (tree == NULL)
 		return (0);
-	return ((int)height_b(tree->left) - (int)height_b(tree->right));
+
+	left_height = tree->left ? (int)binary_tree_height_bal(tree->left) + 1 : 0;
+	right_height = tree->right ? (int)binary_tree_height_bal(tree->right) + 1 : 0;
+
+	return (left_height - right_height);
 }

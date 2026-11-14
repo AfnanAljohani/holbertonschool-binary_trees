@@ -23,3 +23,7 @@ All files are compiled with: gcc -Wall -Werror -Wextra -pedantic -std=gnu89
 
 - Lama Lama
 - Aljohani Afnan
+
+---
+
+Afnan Aljohani · [Portfolio](https://afnanaljohani.github.io/) · [LinkedIn](https://www.linkedin.com/in/afnan-fahad-aljohani-0b5a70315/)
